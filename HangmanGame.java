@@ -24,11 +24,14 @@ public class HangmanGame {
 		return this.wrongLetters.size();
 	}
 	
-	public void guessLetter(char letter) {
+	public boolean isCorrectLetter(char letter) {
 		this.guessedLetters.add(letter);
 		
-		if (this.randomWord.indexOf(letter) < 0) {
+		if (this.randomWord.indexOf(letter) >= 0) {
+			return true;
+		} else {
 			this.wrongLetters.add(letter);
+			return false;
 		}
 	}
 }
