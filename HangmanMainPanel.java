@@ -49,6 +49,8 @@ public class HangmanMainPanel extends JPanel {
 			} else {
 				missesResultsLabel.setText(hangman.getWrongLetters());
 			}
+			
+			letterInput.setText("");
 		}
 	}
 
