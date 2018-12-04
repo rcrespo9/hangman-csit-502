@@ -7,7 +7,7 @@ public class Hangman {
 		JFrame frame = new JFrame("Hangman");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		HangmanGamePanel panel = new HangmanGamePanel();
+		HangmanMainPanel panel = new HangmanMainPanel();
 		
 		frame.getContentPane().add(panel);
 		frame.pack();
