@@ -2,8 +2,11 @@ package rudy_prj_src;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 public class HangmanGame {
 	private final int MAX_ATTEMPTS = 6;
+	private static String gameWord;
 	private static String randomWord = "Baseball";
 	private static ArrayList<String> correctLetters = new ArrayList<String>();
 	private ArrayList<String> wrongLetters = new ArrayList<String>();
@@ -12,21 +15,27 @@ public class HangmanGame {
 //		
 //	}
 	
-	public String getGameWord() {
-		StringBuilder gameWord = new StringBuilder();
-		String[] gameWordArr = randomWord.split("");
+	private static void buildGameWord(String letter) {
+		StringBuilder sb = new StringBuilder();
+		String[] gameWordLetters = randomWord.split("");
 		
-		for (int i = 0; i <= gameWordArr.length; i++) {
-			inner: for (int j = 0; j <= correctLetters.size(); j++) {				
-				if (gameWordArr[i] == correctLetters.get(j)) {
-					gameWord.append(correctLetters.get(j));
+		correctLetters.add(letter);
+		
+		for (String gameLetter: gameWordLetters) {
+			for (int j = 0; j <= correctLetters.size() - 1; j++) {		
+				if (correctLetters.get(j).equalsIgnoreCase(gameLetter)) {
+					sb.append(gameLetter);
 				} else {
-					gameWord.append(" _ ");
+					sb.append(" _ ");
 				}
 			}
 		}
 		
-		return gameWord.toString();
+		gameWord = sb.toString();
+	}
+	
+	public static String getGameWord() {
+		return gameWord;
 	}
 	
 	public String getBlankWord() {
@@ -51,11 +60,18 @@ public class HangmanGame {
 	
 	public boolean isCorrectLetter(String letter) {		
 		if (randomWord.indexOf(letter) >= 0) {
-			correctLetters.add(letter);
+			buildGameWord(letter);
 			return true;
 		} else {
 			wrongLetters.add(letter);
 			return false;
 		}
 	}
+	
+	public static void main(String[] args) {
+		buildGameWord("a");
+		
+		System.out.println(getGameWord());
+	}
+
 }
