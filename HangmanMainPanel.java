@@ -15,7 +15,7 @@ public class HangmanMainPanel extends JPanel {
 //		HangmanFigurePanel = new JPanel();
 		
 		HangmanScoreboardPanel = new JPanel();
-		wordLabel = new JLabel(hangman.getGameWord());
+		wordLabel = new JLabel(hangman.getBlankWord());
 		missesLabel = new JLabel("Misses: ");
 		missesResultsLabel = new JLabel(" ");
 		

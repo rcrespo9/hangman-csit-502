@@ -15,7 +15,7 @@ public class HangmanGame {
 //		
 //	}
 	
-	private static void buildGameWord(String letter) {
+	private void buildGameWord(String letter) {
 		StringBuilder sb = new StringBuilder();
 		String[] gameWordLetters = randomWord.split("");
 		
@@ -23,10 +23,12 @@ public class HangmanGame {
 		
 		for (String gameLetter: gameWordLetters) {
 			for (int j = 0; j <= correctLetters.size() - 1; j++) {
+				boolean areLettersEqual = correctLetters.get(j).equalsIgnoreCase(gameLetter);
 				boolean letterNotGuessed = correctLetters.stream().anyMatch(gameLetter::equalsIgnoreCase) == false;
 				
-				if (correctLetters.get(j).equalsIgnoreCase(gameLetter)) {
+				if (areLettersEqual) {
 					sb.append(gameLetter + " ");
+					break;
 				} else if(letterNotGuessed) {
 					sb.append("_ ");
 					break;
@@ -37,7 +39,7 @@ public class HangmanGame {
 		gameWord = sb.toString();
 	}
 	
-	public static String getGameWord() {
+	public String getGameWord() {
 		return gameWord;
 	}
 	
@@ -70,11 +72,4 @@ public class HangmanGame {
 			return false;
 		}
 	}
-	
-	public static void main(String[] args) {
-		buildGameWord("b");
-		
-		System.out.println(getGameWord());
-	}
-
 }
