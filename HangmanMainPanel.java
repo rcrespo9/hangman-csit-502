@@ -36,9 +36,8 @@ public class HangmanMainPanel extends JPanel {
 		
 		HangmanOutcomePanel.add(outcomeLabel);
 		
+		HangmanFigurePanel.setLayout(new BorderLayout());
 		HangmanFigurePanel.add(hangmanPanel);
-		HangmanFigurePanel.setBackground(Color.white);
-		HangmanFigurePanel.setPreferredSize(new Dimension(300, 200));
 		
 		HangmanScoreboardPanel.add(wordLabel);
 		HangmanScoreboardPanel.add(missesLabel);
