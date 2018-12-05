@@ -5,6 +5,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class HangmanMainPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel HangmanScoreboardPanel, HangmanActionsPanel;
 	private JLabel letterInputLabel, wordLabel, missesLabel, missesResultsLabel;
 	private JTextField letterInput;
@@ -12,7 +16,7 @@ public class HangmanMainPanel extends JPanel {
 	private HangmanGame hangman = new HangmanGame();
 	
 	public HangmanMainPanel() {
-//		HangmanFigurePanel = new JPanel();
+		HangmanFigurePanel figurePanel = new HangmanFigurePanel();
 		
 		HangmanScoreboardPanel = new JPanel();
 		wordLabel = new JLabel(hangman.getBlankWord());
@@ -33,6 +37,7 @@ public class HangmanMainPanel extends JPanel {
 		HangmanActionsPanel.add(letterInput);
 		HangmanActionsPanel.add(guessLetterBtn);
 		
+		this.add(figurePanel);
 		this.add(HangmanScoreboardPanel);
 		this.add(HangmanActionsPanel);
 		
