@@ -9,14 +9,19 @@ public class HangmanMainPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel HangmanScoreboardPanel, HangmanActionsPanel;
-	private JLabel letterInputLabel, wordLabel, missesLabel, missesResultsLabel;
+	private JPanel HangmanOutcomePanel, HangmanScoreboardPanel, HangmanActionsPanel;
+	private JLabel outcomeLabel, letterInputLabel, wordLabel, missesLabel, missesResultsLabel;
 	private JTextField letterInput;
 	private JButton guessLetterBtn;
 	private HangmanGame hangman = new HangmanGame();
+	private int mistakeNum = 0;
+	private HangmanFigurePanel figurePanel = new HangmanFigurePanel();
 	
 	public HangmanMainPanel() {
-		HangmanFigurePanel figurePanel = new HangmanFigurePanel();
+		figurePanel.setMistakeNum(mistakeNum);
+		
+		HangmanOutcomePanel = new JPanel();
+		outcomeLabel = new JLabel();
 		
 		HangmanScoreboardPanel = new JPanel();
 		wordLabel = new JLabel(hangman.getBlankWord());
@@ -37,6 +42,7 @@ public class HangmanMainPanel extends JPanel {
 		HangmanActionsPanel.add(letterInput);
 		HangmanActionsPanel.add(guessLetterBtn);
 		
+		this.add(HangmanOutcomePanel);
 		this.add(figurePanel);
 		this.add(HangmanScoreboardPanel);
 		this.add(HangmanActionsPanel);
