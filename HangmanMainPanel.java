@@ -10,18 +10,18 @@ public class HangmanMainPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel HangmanOutcomePanel, HangmanScoreboardPanel, HangmanActionsPanel;
+	private JPanel HangmanFigurePanel = new JPanel();
 	private JLabel outcomeLabel, letterInputLabel, wordLabel, missesLabel, missesResultsLabel;
 	private JTextField letterInput;
 	private JButton guessLetterBtn;
 	private HangmanGame hangman = new HangmanGame();
-	private int mistakeNum = 0;
-	private HangmanFigurePanel figurePanel = new HangmanFigurePanel();
+	private HangmanPanel hangmanPanel = new HangmanPanel();
 	
-	public HangmanMainPanel() {
-		figurePanel.setMistakeNum(mistakeNum);
-		
+	
+	public HangmanMainPanel() {		
 		HangmanOutcomePanel = new JPanel();
-		outcomeLabel = new JLabel();
+		outcomeLabel = new JLabel("");
+		
 		
 		HangmanScoreboardPanel = new JPanel();
 		wordLabel = new JLabel(hangman.getBlankWord());
@@ -34,6 +34,12 @@ public class HangmanMainPanel extends JPanel {
 		guessLetterBtn = new JButton("Guess");
 		guessLetterBtn.addActionListener(new ButtonListener());
 		
+		HangmanOutcomePanel.add(outcomeLabel);
+		
+		HangmanFigurePanel.add(hangmanPanel);
+		HangmanFigurePanel.setBackground(Color.white);
+		HangmanFigurePanel.setPreferredSize(new Dimension(300, 200));
+		
 		HangmanScoreboardPanel.add(wordLabel);
 		HangmanScoreboardPanel.add(missesLabel);
 		HangmanScoreboardPanel.add(missesResultsLabel);
@@ -43,13 +49,12 @@ public class HangmanMainPanel extends JPanel {
 		HangmanActionsPanel.add(guessLetterBtn);
 		
 		this.add(HangmanOutcomePanel);
-		this.add(figurePanel);
+		this.add(HangmanFigurePanel);
 		this.add(HangmanScoreboardPanel);
 		this.add(HangmanActionsPanel);
 		
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBackground(Color.white);
 		this.setPreferredSize(new Dimension(600, 337));
 	}
 	
@@ -58,6 +63,10 @@ public class HangmanMainPanel extends JPanel {
 			if( hangman.isCorrectLetter(letterInput.getText()) ) {
 				wordLabel.setText(hangman.getGameWord());
 			} else {
+				HangmanFigurePanel.removeAll();
+				HangmanFigurePanel.updateUI();
+				HangmanFigurePanel.add(hangmanPanel);
+				hangmanPanel.setMistakeNum(hangman.getWrongLettersCount());
 				missesResultsLabel.setText(hangman.getWrongLetters());
 			}
 			

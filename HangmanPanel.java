@@ -4,7 +4,7 @@ import java.awt.*;
 
 import javax.swing.JPanel;
 
-public class HangmanFigurePanel extends JPanel {
+public class HangmanPanel extends JPanel {
 	private int mistakeNum = 0;
 
 	/**
