@@ -74,6 +74,9 @@ public class HangmanGame {
 	public String getGameWord() {
 		return gameWord;
 	}
+	public String getRandomWord() {
+		return randomWord;
+	}
 	
 	public String getBlankWord() {
 		StringBuilder blankWord = new StringBuilder();
@@ -100,9 +103,15 @@ public class HangmanGame {
 			buildGameWord(letter);
 			return true;
 		} else {
-			wrongLetters.add(letter);
+			if (wrongLetters.stream().anyMatch(letter::equalsIgnoreCase) == false) {
+				wrongLetters.add(letter);
+			}
 			return false;
 		}
+	}
+	
+	public boolean isGameOver() {
+		return isGameWon() || isGameLost();
 	}
 	
 	public boolean isGameWon() {

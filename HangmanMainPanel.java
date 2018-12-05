@@ -13,7 +13,7 @@ public class HangmanMainPanel extends JPanel {
 	private JPanel HangmanFigurePanel = new JPanel();
 	private JLabel outcomeLabel, letterInputLabel, wordLabel, missesLabel, missesResultsLabel;
 	private JTextField letterInput;
-	private JButton guessLetterBtn;
+	private JButton guessLetterBtn, newGameBtn;
 	private HangmanGame hangman = new HangmanGame();
 	private HangmanPanel hangmanPanel = new HangmanPanel();
 	
@@ -33,6 +33,7 @@ public class HangmanMainPanel extends JPanel {
 		letterInput = new JTextField(1);
 		guessLetterBtn = new JButton("Guess");
 		guessLetterBtn.addActionListener(new ButtonListener());
+		newGameBtn = new JButton("New Game");
 		
 		HangmanOutcomePanel.add(outcomeLabel);
 		
@@ -72,10 +73,16 @@ public class HangmanMainPanel extends JPanel {
 				
 				letterInput.setText("");
 				
-				if (hangman.isGameWon()) {
-					outcomeLabel.setText("You won!");
-				} else if (hangman.isGameLost()) {
-					outcomeLabel.setText("You lost!");
+				if (hangman.isGameOver()) {
+					HangmanActionsPanel.removeAll();
+					HangmanActionsPanel.updateUI();
+					HangmanActionsPanel.add(newGameBtn);
+					
+					if (hangman.isGameWon()) {
+						outcomeLabel.setText("You won!");
+					} else if (hangman.isGameLost()) {
+						outcomeLabel.setText("You lost! The correct word was: " + hangman.getRandomWord());
+					}
 				}
 			}
 		}
