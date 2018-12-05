@@ -70,7 +70,13 @@ public class HangmanMainPanel extends JPanel {
 					missesResultsLabel.setText(hangman.getWrongLetters());
 				}
 				
-				letterInput.setText("");	
+				letterInput.setText("");
+				
+				if (hangman.isGameWon()) {
+					outcomeLabel.setText("You won!");
+				} else if (hangman.isGameLost()) {
+					outcomeLabel.setText("You lost!");
+				}
 			}
 		}
 	}

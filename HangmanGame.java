@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 public class HangmanGame {
 	private final int MAX_ATTEMPTS = 6;
-	private static String gameWord;
+	private static String gameWord = "";
 	private static String randomWord = "Baseball";
 	private static ArrayList<String> correctLetters = new ArrayList<String>();
 	private ArrayList<String> wrongLetters = new ArrayList<String>();
@@ -69,6 +69,24 @@ public class HangmanGame {
 			return true;
 		} else {
 			wrongLetters.add(letter);
+			return false;
+		}
+	}
+	
+	public boolean isGameWon() {
+		String gameWordNoSpaces = gameWord.replaceAll("\\s+","");
+		
+		if (randomWord.equals(gameWordNoSpaces)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean isGameLost() {
+		if (getWrongLettersCount() == MAX_ATTEMPTS) {
+			return true;
+		} else {
 			return false;
 		}
 	}
