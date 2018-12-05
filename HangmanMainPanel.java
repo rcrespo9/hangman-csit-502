@@ -58,18 +58,20 @@ public class HangmanMainPanel extends JPanel {
 	}
 	
 	private class ButtonListener implements ActionListener {
-		public void actionPerformed(ActionEvent event) {			
-			if( hangman.isCorrectLetter(letterInput.getText()) ) {
-				wordLabel.setText(hangman.getGameWord());
-			} else {
-				HangmanFigurePanel.removeAll();
-				HangmanFigurePanel.updateUI();
-				HangmanFigurePanel.add(hangmanPanel);
-				hangmanPanel.setMistakeNum(hangman.getWrongLettersCount());
-				missesResultsLabel.setText(hangman.getWrongLetters());
+		public void actionPerformed(ActionEvent event) {
+			if ( !letterInput.getText().equals("") ) {
+				if( hangman.isCorrectLetter(letterInput.getText()) ) {
+					wordLabel.setText(hangman.getGameWord());
+				} else {
+					HangmanFigurePanel.removeAll();
+					HangmanFigurePanel.updateUI();
+					HangmanFigurePanel.add(hangmanPanel);
+					hangmanPanel.setMistakeNum(hangman.getWrongLettersCount());
+					missesResultsLabel.setText(hangman.getWrongLetters());
+				}
+				
+				letterInput.setText("");	
 			}
-			
-			letterInput.setText("");
 		}
 	}
 
