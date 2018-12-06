@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class Hangman {
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Hangman");
+		JFrame frame = new JFrame("Rudy Crespo — Hangman");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		
