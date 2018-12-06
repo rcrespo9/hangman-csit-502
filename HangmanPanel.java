@@ -17,6 +17,8 @@ public class HangmanPanel extends JPanel {
 	}
 	
 	public void paint(Graphics g) {
+		super.paintComponent(g);
+		
 		drawGallows(g);	
 		drawFigure(g, mistakeNum);
 	}

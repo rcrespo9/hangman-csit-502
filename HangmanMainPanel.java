@@ -32,8 +32,9 @@ public class HangmanMainPanel extends JPanel {
 		letterInputLabel = new JLabel("Enter a letter:");
 		letterInput = new JTextField(1);
 		guessLetterBtn = new JButton("Guess");
-		guessLetterBtn.addActionListener(new ButtonListener());
+		guessLetterBtn.addActionListener(new GuessButtonListener());
 		newGameBtn = new JButton("New Game");
+		newGameBtn.addActionListener(new NewGameButtonListener());
 		
 		HangmanOutcomePanel.add(outcomeLabel);
 		
@@ -58,7 +59,7 @@ public class HangmanMainPanel extends JPanel {
 		this.setPreferredSize(new Dimension(600, 337));
 	}
 	
-	private class ButtonListener implements ActionListener {
+	private class GuessButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			if ( !letterInput.getText().equals("") ) {
 				if( hangman.isCorrectLetter(letterInput.getText()) ) {
@@ -85,6 +86,21 @@ public class HangmanMainPanel extends JPanel {
 					}
 				}
 			}
+		}
+	}
+	
+	private class NewGameButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			hangman.reset();
+			wordLabel.setText(hangman.getBlankWord());
+			outcomeLabel.setText("");
+			missesResultsLabel.setText("");
+			hangmanPanel.setMistakeNum(0);
+			HangmanActionsPanel.removeAll();
+			HangmanActionsPanel.updateUI();
+			HangmanActionsPanel.add(letterInputLabel);
+			HangmanActionsPanel.add(letterInput);
+			HangmanActionsPanel.add(guessLetterBtn);
 		}
 	}
 

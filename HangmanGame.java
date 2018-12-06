@@ -131,4 +131,13 @@ public class HangmanGame {
 			return false;
 		}
 	}
+	
+	public void reset() {
+		setRandomWord();
+		
+		gameWord = "";
+		
+		correctLetters.clear();
+		wrongLetters.clear();
+	}
 }
