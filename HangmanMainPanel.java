@@ -65,7 +65,7 @@ public class HangmanMainPanel extends JPanel {
 	
 	private class GuessButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			if ( !letterInput.getText().equals("") ) {
+			if ( !letterInput.getText().equals("") && letterInput.getText().length() == 1) {
 				if( hangman.isCorrectLetter(letterInput.getText()) ) {
 					wordLabel.setText(hangman.getGameWord());
 				} else {

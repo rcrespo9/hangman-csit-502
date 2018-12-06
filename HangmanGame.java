@@ -99,7 +99,7 @@ public class HangmanGame {
 	}
 	
 	public boolean isCorrectLetter(String letter) {		
-		if (randomWord.indexOf(letter) >= 0) {
+		if (randomWord.indexOf(letter) >= 0 && letter.length() == 1) {
 			buildGameWord(letter);
 			return true;
 		} else {
