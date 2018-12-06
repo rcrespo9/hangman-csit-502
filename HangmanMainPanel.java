@@ -9,9 +9,9 @@ public class HangmanMainPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel HangmanOutcomePanel, HangmanWordPanel, HangmanMissesPanel, HangmanActionsPanel;
+	private JPanel HangmanOutcomePanel, HangmanWordPanel, HangmanMissesPanel, HangmanActionsPanel, HangmanWarningsPanel;
 	private JPanel HangmanFigurePanel = new JPanel();
-	private JLabel outcomeLabel, letterInputLabel, wordLabel, missesLabel, missesResultsLabel;
+	private JLabel outcomeLabel, letterInputLabel, wordLabel, missesLabel, missesResultsLabel, warningsLabel;
 	private JTextField letterInput;
 	private JButton guessLetterBtn, newGameBtn;
 	private HangmanGame hangman = new HangmanGame();
@@ -38,6 +38,10 @@ public class HangmanMainPanel extends JPanel {
 		newGameBtn = new JButton("New Game");
 		newGameBtn.addActionListener(new NewGameButtonListener());
 		
+		HangmanWarningsPanel = new JPanel();
+		warningsLabel = new JLabel("");
+		HangmanWarningsPanel.add(warningsLabel);
+		
 		HangmanOutcomePanel.add(outcomeLabel);
 		
 		HangmanFigurePanel.setLayout(new BorderLayout());
@@ -57,15 +61,21 @@ public class HangmanMainPanel extends JPanel {
 		this.add(HangmanWordPanel);
 		this.add(HangmanMissesPanel);
 		this.add(HangmanActionsPanel);
+		this.add(HangmanWarningsPanel);
 		
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension(600, 337));
 	}
 	
-	private class GuessButtonListener implements ActionListener {
+	private class GuessButtonListener implements ActionListener {		
 		public void actionPerformed(ActionEvent event) {
-			if ( !letterInput.getText().equals("") && letterInput.getText().length() == 1) {
+			boolean inputNotEmpty = !letterInput.getText().equals("");
+			boolean inputOnlyOneLetter = letterInput.getText().length() == 1;
+			
+			if ( inputNotEmpty && inputOnlyOneLetter) {
+				warningsLabel.setText("");
+				
 				if( hangman.isCorrectLetter(letterInput.getText()) ) {
 					wordLabel.setText(hangman.getGameWord());
 				} else {
@@ -89,6 +99,10 @@ public class HangmanMainPanel extends JPanel {
 						outcomeLabel.setText("You lost! The correct word was: " + hangman.getRandomWord());
 					}
 				}
+			} else if (letterInput.getText().equals("")) {
+				warningsLabel.setText("Please enter at least one letter");
+			} else if (letterInput.getText().length() > 1) {
+				warningsLabel.setText("Please enter only one letter");
 			}
 		}
 	}
