@@ -9,7 +9,7 @@ public class HangmanMainPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel HangmanOutcomePanel, HangmanScoreboardPanel, HangmanActionsPanel;
+	private JPanel HangmanOutcomePanel, HangmanWordPanel, HangmanMissesPanel, HangmanActionsPanel;
 	private JPanel HangmanFigurePanel = new JPanel();
 	private JLabel outcomeLabel, letterInputLabel, wordLabel, missesLabel, missesResultsLabel;
 	private JTextField letterInput;
@@ -23,14 +23,16 @@ public class HangmanMainPanel extends JPanel {
 		outcomeLabel = new JLabel("");
 		
 		
-		HangmanScoreboardPanel = new JPanel();
+		HangmanWordPanel = new JPanel();
+		HangmanMissesPanel = new JPanel();
+		
 		wordLabel = new JLabel(hangman.getBlankWord());
 		missesLabel = new JLabel("Misses: ");
 		missesResultsLabel = new JLabel(" ");
 		
 		HangmanActionsPanel = new JPanel();
 		letterInputLabel = new JLabel("Enter a letter:");
-		letterInput = new JTextField(1);
+		letterInput = new JTextField(1);		
 		guessLetterBtn = new JButton("Guess");
 		guessLetterBtn.addActionListener(new GuessButtonListener());
 		newGameBtn = new JButton("New Game");
@@ -41,9 +43,10 @@ public class HangmanMainPanel extends JPanel {
 		HangmanFigurePanel.setLayout(new BorderLayout());
 		HangmanFigurePanel.add(hangmanPanel);
 		
-		HangmanScoreboardPanel.add(wordLabel);
-		HangmanScoreboardPanel.add(missesLabel);
-		HangmanScoreboardPanel.add(missesResultsLabel);
+		HangmanWordPanel.add(wordLabel);
+		
+		HangmanMissesPanel.add(missesLabel);
+		HangmanMissesPanel.add(missesResultsLabel);
 		
 		HangmanActionsPanel.add(letterInputLabel);
 		HangmanActionsPanel.add(letterInput);
@@ -51,7 +54,8 @@ public class HangmanMainPanel extends JPanel {
 		
 		this.add(HangmanOutcomePanel);
 		this.add(HangmanFigurePanel);
-		this.add(HangmanScoreboardPanel);
+		this.add(HangmanWordPanel);
+		this.add(HangmanMissesPanel);
 		this.add(HangmanActionsPanel);
 		
 		
@@ -103,5 +107,4 @@ public class HangmanMainPanel extends JPanel {
 			HangmanActionsPanel.add(guessLetterBtn);
 		}
 	}
-
 }
